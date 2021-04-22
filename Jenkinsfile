@@ -4,15 +4,21 @@ pipeline {
         PATH = "$PATH:/usr/local/bin"
   }
   stages {
-    stage('checkout project') {
+    stage('Build') {
       steps {
-        checkout scm
+        echo 'This is Building'
       }
     }
 
-    stage('start node docker') {
+    stage('Test') {
       steps {
-        sh 'docker-compose up -d server'
+        echo 'This is Testing'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'docker-compose up -d'
       }
     }
 
