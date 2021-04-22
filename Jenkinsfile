@@ -4,6 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'This is Building'
+        sh 'docker rm -f `docker ps -a -q`'
       }
     }
 
