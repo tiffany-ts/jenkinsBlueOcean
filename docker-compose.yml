@@ -2,19 +2,19 @@ version: "3.9"
 
 services:
   dev:
-    image: "node:latest"
+    image: "node:10"
+    ports:
+      - "8888:8000"
+    volumes:
+      - ./:/app
+    command: "/bin/bash"
+    working_dir: "/app"
+
+  server:
+    image: "node:10"
     ports:
       - "8888:8000"
     volumes:
       - ./:/app
     command: "node test.js"
-    working_dir: "/app"
-
-  server:
-    image: "node:latest"
-    ports:
-      - "8889:8000"
-    volumes:
-      - ./:/app
-    command: "node test.js"
-    working_dir: "/app" 
+    working_dir: "/app"  

@@ -1,24 +1,21 @@
 pipeline {
   agent any
-  environment {
-        PATH = "$PATH:/usr/local/bin"
-    }
   stages {
-    stage('Build') {
+    stage('checkout project') {
       steps {
-        echo 'This is Building'
+        checkout scm
       }
     }
 
-    stage('Test') {
+    stage('stop node docker') {
       steps {
-        echo 'This is Testing'
+        sh 'docker rm -f node-docker-sample_main_server_1 | true'
       }
     }
 
-    stage('Deploy') {
+    stage('start node docker') {
       steps {
-        sh 'docker-compose up -d'
+        sh 'docker-compose up -d server'
       }
     }
 
