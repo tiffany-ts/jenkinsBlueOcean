@@ -17,9 +17,6 @@ pipeline {
     }
 
     stage('Deploy') {
-      environment {
-        PATH = '/usr/local/bin'
-      }
       steps {
         sh 'docker-compose up -d'
       }
